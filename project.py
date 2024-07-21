@@ -9,14 +9,14 @@ app.secret_key = secrets.token_hex(16)
 
 
 firebaseConfig = {
-  "apiKey"           : "AIzaSyDgmrEYltHWhU3weMa1XMyyCtpNMo0A_FM",
-  "authDomain"       : "victus-525c8.firebaseapp.com",
-  "databaseURL"      : "https://victus-525c8-default-rtdb.firebaseio.com",
-  "projectId"        : "victus-525c8",
-  "storageBucket"    : "victus-525c8.appspot.com",
-  "messagingSenderId": "394755840208",
-  "appId"            : "1:394755840208:web:6aca03439246d30d2da6d5",
-  "measurementId"    : "G-RRMM6VN54E"
+  "apiKey"           : "you api key",
+  "authDomain"       : "your domain",
+  "databaseURL"      : "your databse url",
+  "projectId"        : "your project id",
+  "storageBucket"    : "your storagebucket",
+  "messagingSenderId": "your sender id number",
+  "appId"            : "your add ip",
+  "measurementId"    : "your measurement id"
 };
 count=0
 firebase = pyrebase.initialize_app(firebaseConfig)
