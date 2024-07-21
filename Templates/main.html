@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VICTUS</title>
+  <style>
+    body {
+        background-color: #f1f1f1;
+      }
+    h1{
+        color: dodgerblue;
+    }
+    h2{
+        color:green;
+    }
+    .profile-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    .profile-picture {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid dodgerblue;
+    }
+    .header {
+        background-color: dodgerblue;
+        padding: 20px;
+        text-align: center;
+      }
+      .header-title {
+        color: white;
+        font-size: 24px;
+        margin: 0;
+      }
+      .welcome-container {
+        margin-top: 200px;
+        text-align: center;
+      }
+      .welcome-title {
+        color: dodgerblue;
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+      .welcome-message {
+        color: #333333;
+        font-size: 20px;
+      }
+    .btn-group button {
+        width: fit;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: dodgerblue;
+        color: #fff;
+    }
+
+    .btn-group button:hover {
+        background-color: #0066cc;
+    }
+  </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="header-title">VICTUS</h1>
+      </header>
+  <div id="photoGallery"></div>
+  
+ 
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js"></script>
+
+  <script>
+   
+    var firebaseConfig = {
+        "apiKey"           : "AIzaSyDgmrEYltHWhU3weMa1XMyyCtpNMo0A_FM",
+        "authDomain"       : "victus-525c8.firebaseapp.com",
+        "databaseURL"      : "https://victus-525c8-default-rtdb.firebaseio.com",
+        "projectId"        : "victus-525c8",
+        "storageBucket"    : "victus-525c8.appspot.com",
+        "messagingSenderId": "394755840208",
+        "appId"            : "1:394755840208:web:6aca03439246d30d2da6d5",
+        "measurementId"    : "G-RRMM6VN54E"
+    };
+    firebase.initializeApp(firebaseConfig);
+    var storageRef = firebase.storage().ref();
+    storageRef.listAll().then(function(result) {
+      result.items.forEach(function(itemRef) {
+        itemRef.getDownloadURL().then(function(url) {
+          
+          var img = document.createElement('img');
+          img.src = url;
+          img.classList.add('profile-picture'); 
+          document.getElementById('photoGallery').appendChild(img);
+        }).catch(function(error) {
+          console.log('Error retrieving photo download URL:', error);
+        });
+      });
+    }).catch(function(error) {
+      console.log('Error retrieving photo list:', error);
+    });
+  </script>
+  <div class="welcome-container">
+    <h1 class="welcome-title">WELCOME</h1>
+    <h2 class="welcome-message">{{message}}</h2>
+    <h2> Get access to one of the most confidential file!</h2>
+    <h3>CHOOSE WISELY</h2>
+    <div class="btn-group">
+      <button class="next-button" onclick="location.href='https://www.youtube.com/watch?v=xvFZjo5PgG0'">Next>>></button>
+       <br>
+       <br>
+    </div>
+       <button class="next-button"onclick="location.href='https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf'">OR</button>
+       <br>
+       <br>
+       <div class="btn-group">
+       <button class="next-button"onclick="location.href='https://www.youtube.com/watch?v=xvFZjo5PgG0'" >Next>>></button>
+       <br>
+       <br>
+       <br>
+       <br>
+    <form action="/logout" method="get">
+        <button type="submit">Logout</button>
+    </form>
+
+  </div>
+</body>
+</html>

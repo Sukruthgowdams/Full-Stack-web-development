@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=869&q=80");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        h1 {
+            text-align: center;
+            color: darkblue;
+        }
+
+        h2 {
+            text-align: center;
+            color: red;
+        }
+
+
+        .center-text {
+            text-align: center;
+        }
+
+        .right-text {
+            text-align: right;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .cancelbtn,
+        .signupbtn {
+            float: left;
+            width: 50%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .cancelbtn {
+            background-color: #ccc;
+            color: #000;
+        }
+
+        .signupbtn {
+            background-color: dodgerblue;
+            color: #fff;
+        }
+
+        .signupbtn:hover {
+            background-color: #0066cc;
+        }
+
+        .message {
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<form action="/" enctype="multipart/form-data" class="container" method="POST" onsubmit="return validateForm()">
+    <h1>Sign Up</h1>
+    <h2> {{message}}</h2>
+     
+    <div class="input-group">
+        <label for="name">Enter username</label>
+        <input type="text" id="name" name="name" placeholder="Enter username" required>
+    </div>
+
+    <div class="input-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" placeholder="Enter your email" required>
+    </div>
+
+    <div class="input-group">
+        <label for="psw">Password</label>
+        <input type="password" id="psw" name="psw" placeholder="Enter your password" required>
+    </div>
+
+    <div class="input-group">
+        <label for="psw_repeat">Repeat Password</label>
+        <input type="password" id="psw_repeat" name="psw_repeat" placeholder="Repeat your password" required>
+    </div>
+
+    <div class="input-group">
+        <label for="phonenumber">Phone Number</label>
+        <input type="text" id="phonenumber" name="phonenumber" maxlength="10" placeholder="Enter your phone number" required>
+    </div>
+
+    <div class="input-group">
+        <label for="photo">Profile picture</label>
+        <input type="file" id="photo" name="photo" placeholder="Insert Image" required>
+    </div>
+
+    <div class="clearfix">
+        <button type="button" class="cancelbtn" onclick="location.href='http://127.0.0.1:5005/'">Cancel</button>
+        <button type="submit" name="btn" value="Signup" class="signupbtn">Sign Up</button>
+    </div>
+</form>
+
+<script>
+    function validateForm() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("psw").value;
+        var repeatPassword = document.getElementById("psw_repeat").value;
+
+        if (!email.endsWith("@gmail.com")) {
+            alert("Please enter a valid Gmail address");
+            return false;
+        }
+
+        if (password !== repeatPassword) {
+            alert("Passwords do not match");
+            return false;
+        }
+
+        if (!validatePassword(password)) {
+            alert("Password must have a minimum of 4 characters, including at least one uppercase letter, one number, and one special character");
+            return false;
+        }
+
+        return true;
+    }
+
+    function validatePassword(password) {
+        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{4,}$/;
+        return passwordRegex.test(password);
+    }
+</script>
+</body>
+</html>
